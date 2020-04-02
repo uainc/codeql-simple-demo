@@ -1,26 +1,13 @@
-IDIR=include
 CC=gcc
-CFLAGS=-I$(IDIR) -Wall
+CFLAGS=-I.
+DEPS = 
+OBJ = main.o 
 
-ODIR=obj
-LDIR=lib
-
-LIBS=-lm
-
-_DEPS = main.h
-DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
-
-_OBJ = main.o
-OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
-
-
-$(ODIR)/%.o: %.c $(DEPS)
+%.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 main: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
-
-.PHONY: clean
+	$(CC) -o $@ $^ $(CFLAGS)
 
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
+	rm -rf *.o main
