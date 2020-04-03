@@ -3,7 +3,7 @@
 void congratulateUser(const char *userName)
 {
         char buffer[80];
-        // BAD: this could overflow the buffer if the UserName is long
+        /* BAD: this could overflow the buffer if the UserName is long */
         sprintf(buffer, "Congratulations, %s!", userName);
 }
 
