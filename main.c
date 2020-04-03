@@ -36,7 +36,7 @@ int main() {
    
    congratulateUser(aName);
         
-   branchingFactor()
+   branchingFactor();
    
    return 0;
 }
