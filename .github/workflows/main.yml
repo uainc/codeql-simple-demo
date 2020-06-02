@@ -1,46 +1,46 @@
-name: CodeQL analysis
+name: "Code scanning - action"
 
-# ℹ️ Actions that trigger the workflow. We intend CodeQL actions to run on push
-#    events. pull_request events are not valid. We also recommend running
-#    analysis on a schedule to ensure that you're scanning repositories even if
-#    they don't have active developers.
-# 📚 https://git.io/JvXD3
 on:
   push:
   schedule:
-   - cron: '0 0 * * 0'
+    - cron: '0 0 * * 0'
 
 jobs:
-  codeql:
+  CodeQL-Build:
 
     strategy:
       fail-fast: false
 
-    # ✏️ Define operating systems to run the job. macOS isn't supported for the
-    #    alpha.
-    # 📚 https://git.io/JvXDG
+    # CodeQL runs on ubuntu-latest and windows-latest
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v1
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v1
+      # Override language selection by uncommenting this and choosing your languages
       with:
+         languages: cpp, java
 
-        # ✏️ Uncomment this line if your repository uses submodules.
-        submodules: recursive
-
-    # ⚠️ THE FOLLOWING LINE IS REQUIRED DURING THE ALPHA. DO NOT MODIFY. ⚠️
-    - uses: Anthophila/codeql-action/codeql/init@master
+    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
+    # If this step fails, then you should remove it and run the build manually (see bellow)
+    # custom build steps .
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
-    # ✏️ Uncomment the following three lines and modify them (or add more) to
-    #    build your code if your project uses a compiled language (C/C++, C#, or
-    #    Java).
-    - run: |
-       make
-    #   make release
 
-    # ⚠️ THE FOLLOWING LINE IS REQUIRED DURING THE ALPHA. DO NOT MODIFY. ⚠️
-    - uses: Anthophila/codeql-action/codeql/finish@master
+    # ✏️ If the Autobuild fails above, remove it and uncomment the following three lines
+    #    and modify them (or add more) to build your code if your project
+    #    uses a compiled language
+
+    - run: | 
+        make |
+        mvn package
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
