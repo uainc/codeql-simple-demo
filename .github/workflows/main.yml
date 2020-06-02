@@ -40,7 +40,7 @@ jobs:
 
     - run: | 
         make |
-        mvn package
+        mvn -f dbconnect/pom.xml package
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
