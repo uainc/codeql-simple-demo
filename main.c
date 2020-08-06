@@ -1,12 +1,14 @@
 #include <stdio.h>
 
-void congratulateUser(const char *userName)
+char * congratulateUser(const char *userName)
 {
         char buffer[80];
         /* BAD: this could overflow the buffer if the UserName is long */
-        sprintf(buffer, "Congratulations, %s!", userName);
+        snprintf(buffer, 256, "Congratulations, %s!", userName);
         
         printf("%s\n", buffer);
+
+        return (char*) buffer;
 }
 
 int main() {
