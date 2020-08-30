@@ -16,4 +16,4 @@ scan: clean
 	sed -i 's?%SRCROOT%?'`pwd`'?g' cpp-results.sarif 
 
 clean:
-	rm -rf *.o main scan-db *.sarif
+	rm -rf *.o main scan-db *.sarif 
