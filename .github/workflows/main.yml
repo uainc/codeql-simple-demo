@@ -12,7 +12,8 @@ jobs:
       fail-fast: false
 
     # CodeQL runs on ubuntu-latest and windows-latest
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout repository
@@ -43,6 +44,13 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
+  
+    - name: Upload CodeQL database
+      uses: actions/upload-artifact@v2
+      with:
+        name: codeql-code-cpp-db
+        # path: ${{ env.RUNNER_TEMP }}/codeql_databases/java # alternative
+        path: ../../_temp/codeql_databases/cpp
 
   Super-Linter:
 
