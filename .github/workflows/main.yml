@@ -50,7 +50,7 @@ jobs:
       with:
         name: codeql-code-cpp-db
         # path: ${{ env.RUNNER_TEMP }}/codeql_databases/java # alternative
-        path: ../../_temp/codeql_databases/cpp
+        path: /var/opt/github/actions-runner/_work/_temp/codeql_databases/cpp
 
   Super-Linter:
 
