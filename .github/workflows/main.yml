@@ -12,8 +12,8 @@ jobs:
       fail-fast: false
 
     # CodeQL runs on ubuntu-latest and windows-latest
-    #runs-on: ubuntu-latest
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    #runs-on: self-hosted
 
     steps:
     - name: Checkout repository
@@ -50,7 +50,8 @@ jobs:
       with:
         name: codeql-code-cpp-db
         # path: ${{ env.RUNNER_TEMP }}/codeql_databases/java # alternative
-        path: /var/opt/github/actions-runner/_work/_temp/codeql_databases/cpp
+        #path: /var/opt/github/actions-runner/_work/_temp/codeql_databases/cpp
+        path: /home/runner/work/_temp/codeql_databases/cpp
 
   Super-Linter:
 
