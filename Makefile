@@ -1,5 +1,6 @@
 CC=gcc
-CFLAGS=-I.
+#CC=aarch64-linux-gnu-g++-8
+CFLAGS=-I. -static
 DEPS = 
 OBJ = main.o 
 
